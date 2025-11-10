@@ -1,0 +1,20 @@
+# https://leetcode.com/problems/minimum-operations-to-convert-all-elements-to-zero/description/?envType=daily-question&envId=2025-11-10
+# November 10th, 2025
+
+class Solution:
+    def minOperations(self, nums: List[int]) -> int:
+        stack = []
+        top = 0
+        ans = 0
+        stack.append(0)
+
+        for n in nums:
+            while stack[top] > n:
+                t = stack.pop(top)
+                top -= 1
+                ans += 1
+            if stack[top] != n:
+                stack.append(n)
+                top += 1
+
+        return ans + top
